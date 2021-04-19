@@ -11,7 +11,7 @@
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="1091.0" BorderPane.alignment="CENTER">
             <children>
-                <ButtonBar prefHeight="57.0" prefWidth="388.0">
+                <ButtonBar prefHeight="57.0" prefWidth="1053.0">
                     <buttons>
                         <Button id="btnLoad" fx:id="btnLoad" mnemonicParsing="false" onAction="#handleBtnLoadAction" prefHeight="27.0" prefWidth="141.0" text="Load images...">
                             <opaqueInsets>
@@ -24,6 +24,8 @@
                             </opaqueInsets>
                         </Button>
                         <Button id="btnNext" fx:id="btnNext" mnemonicParsing="false" onAction="#handleBtnNextAction" text="Next" />
+                  <Button fx:id="btnStart" mnemonicParsing="false" onAction="#handleBtnStartAction" text="Start slideshow" />
+                  <Button fx:id="btnStop" mnemonicParsing="false" onAction="#handleBtnStopAction" prefWidth="195.0" text="Stop slideshow" />
                     </buttons>
                 </ButtonBar>
             </children>
