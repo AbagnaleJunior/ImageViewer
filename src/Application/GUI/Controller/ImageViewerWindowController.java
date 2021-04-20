@@ -9,11 +9,14 @@ import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 
 public class ImageViewerWindowController {
     private final List<Image> images = new ArrayList<>();
@@ -28,6 +31,8 @@ public class ImageViewerWindowController {
     @FXML
     private ImageView imageView;
 
+    @FXML
+    private Label imgTitle;
 
     private void loadNextImage() {
         if (!images.isEmpty()) {
@@ -71,6 +76,9 @@ public class ImageViewerWindowController {
     private void displayImage() {
         if (!images.isEmpty()) {
             imageView.setImage(images.get(currentImageIndex));
+
+            String s = images.get(currentImageIndex).getUrl();
+            imgTitle.setText(s.substring(s.lastIndexOf("/") + 1));
         }
     }
 
