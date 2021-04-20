@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -21,7 +24,8 @@ import javax.swing.*;
 public class ImageViewerWindowController {
     private final List<Image> images = new ArrayList<>();
     private int currentImageIndex = 0;
-    Timer timer = new Timer();
+    Timer timer;
+
 
     private boolean isRunning = false;
 
@@ -34,8 +38,12 @@ public class ImageViewerWindowController {
     @FXML
     private Label imgTitle;
 
+    @FXML
+    private Label pixelCounterLbl;
+
     private void loadNextImage() {
         if (!images.isEmpty()) {
+
             currentImageIndex = (currentImageIndex + 1) % images.size();
             displayImage();
         }
@@ -75,16 +83,57 @@ public class ImageViewerWindowController {
 
     private void displayImage() {
         if (!images.isEmpty()) {
-            imageView.setImage(images.get(currentImageIndex));
+            Image newImage = images.get(currentImageIndex);
+            imageView.setImage(newImage);
 
-            String s = images.get(currentImageIndex).getUrl();
-            imgTitle.setText(s.substring(s.lastIndexOf("/") + 1));
+            Platform.runLater(() -> {
+
+                String s = images.get(currentImageIndex).getUrl();
+
+                pixelCounterLbl.setText(countPixels(newImage));
+                imgTitle.setText(s.substring(s.lastIndexOf("/") + 1));
+            });
         }
+    }
+
+    private String countPixels(Image image) {
+        int r = 0;
+        int g = 0;
+        int b = 0;
+        int mixed = 0;
+
+        final PixelReader pixelReader = image.getPixelReader();
+        if (pixelReader == null) {
+            throw new IllegalStateException();
+        }
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                Color color = pixelReader.getColor(x, y);
+                double red = color.getRed();
+                double green = color.getGreen();
+                double blue = color.getBlue();
+
+                if (red > blue && red > green) {
+                    r = r + 1;
+                } else if (blue > red && blue > green) {
+                    b = b + 1;
+                } else if (green > blue && green > red) {
+                    g = g + 1;
+                } else {
+                    mixed = mixed + 1;
+                }
+            }
+        }
+
+        return "Pixels: R:" + r + " G:" + g + " B:" + b + "";
     }
 
     @FXML
     private void handleBtnStartAction() {
         if (!isRunning) {
+            // double sliderBarValue =
+
+            timer = new Timer();
             currentImageIndex = 0;
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
@@ -92,6 +141,8 @@ public class ImageViewerWindowController {
                     loadNextImage();
                 }
             }, 1 * 1000, 1 * 1000);
+            // }, sliderBarValue, sliderBarValue);
+
             isRunning = true;
         }
 

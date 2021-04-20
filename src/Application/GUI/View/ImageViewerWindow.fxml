@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GUI.Controller.ImageViewerWindowController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="796.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GUI.Controller.ImageViewerWindowController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="1091.0" BorderPane.alignment="CENTER">
             <children>
@@ -46,7 +46,7 @@
                 <ImageView fx:id="imageView" fitHeight="647.0" fitWidth="1090.0" pickOnBounds="true" preserveRatio="true" />
             </center>
          <top>
-            <Label fx:id="imgTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="1165.0" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+            <Label fx:id="imgTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="397.0" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                <font>
                   <Font size="27.0" />
                </font>
@@ -54,4 +54,14 @@
          </top>
         </BorderPane>
     </center>
+   <bottom>
+      <Label fx:id="pixelCounterLbl" prefWidth="244.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </bottom>
 </BorderPane>
