@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
@@ -40,6 +41,9 @@ public class ImageViewerWindowController {
 
     @FXML
     private Label pixelCounterLbl;
+
+    @FXML
+    private Slider slideshowSlider;
 
     private void loadNextImage() {
         if (!images.isEmpty()) {
@@ -131,17 +135,17 @@ public class ImageViewerWindowController {
     @FXML
     private void handleBtnStartAction() {
         if (!isRunning) {
-            // double sliderBarValue =
+
+            int period = (int) slideshowSlider.getValue();
 
             timer = new Timer();
             currentImageIndex = 0;
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
-                public void run() {
+                public synchronized void run() {
                     loadNextImage();
                 }
-            }, 1 * 1000, 1 * 1000);
-            // }, sliderBarValue, sliderBarValue);
+            }, 1, period * 1000);
 
             isRunning = true;
         }
@@ -162,4 +166,5 @@ public class ImageViewerWindowController {
 
 
     }
+
 }

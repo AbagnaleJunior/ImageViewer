@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,7 +15,7 @@
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="1091.0" BorderPane.alignment="CENTER">
             <children>
-                <ButtonBar prefHeight="57.0" prefWidth="1104.0">
+                <ButtonBar prefHeight="57.0" prefWidth="1001.0">
                     <buttons>
                         <Button id="btnLoad" fx:id="btnLoad" mnemonicParsing="false" onAction="#handleBtnLoadAction" prefHeight="27.0" prefWidth="141.0" text="Load images...">
                             <opaqueInsets>
@@ -34,6 +35,11 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
                 </ButtonBar>
+            <Slider fx:id="slideshowSlider" max="5.0" min="1.0" prefHeight="14.0" prefWidth="115.0" showTickLabels="true" showTickMarks="true">
+               <HBox.margin>
+                  <Insets left="45.0" />
+               </HBox.margin>
+            </Slider>
             </children>
             <opaqueInsets>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
