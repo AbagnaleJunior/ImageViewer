@@ -7,7 +7,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -20,7 +19,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 
 public class ImageViewerWindowController {
     private final List<Image> images = new ArrayList<>();
@@ -52,7 +50,6 @@ public class ImageViewerWindowController {
             displayImage();
         }
     }
-
 
     @FXML
     private void handleBtnLoadAction() {
@@ -128,7 +125,6 @@ public class ImageViewerWindowController {
                 }
             }
         }
-
         return "Pixels: R:" + r + " G:" + g + " B:" + b + "";
     }
 
@@ -161,10 +157,6 @@ public class ImageViewerWindowController {
                 isRunning = false;
             }
         } catch (Exception e) {
-
         }
-
-
     }
-
 }
